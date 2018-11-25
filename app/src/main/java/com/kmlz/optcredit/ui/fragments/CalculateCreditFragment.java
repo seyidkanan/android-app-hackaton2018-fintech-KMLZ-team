@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +88,7 @@ public class CalculateCreditFragment extends Fragment {
                 if (!ed_amount.getText().toString().trim().isEmpty()
                         || ed_lenght.getText().toString().trim().isEmpty()
                         || ed_percent.getText().toString().trim().isEmpty()){
-
+                    makeCalculations();
 
                 } else {
 
@@ -101,7 +102,7 @@ public class CalculateCreditFragment extends Fragment {
         double amount = Double.parseDouble(ed_amount.getText().toString().trim());
         int months = Integer.parseInt(ed_lenght.getText().toString().trim());
         int percents = Integer.parseInt(ed_percent.getText().toString().trim());
-
+        Log.e("tag",amount+" "+months+" "+percents);
         double perMonthPay =  (amount + (amount * (percents/100))) / months;
 
         new PromptDialog(getActivity())
