@@ -8,6 +8,7 @@ import com.kmlz.optcredit.network.request.MainRequestBody;
 import com.kmlz.optcredit.network.request.RegisterRequest;
 import com.kmlz.optcredit.network.responses.CategoryListResponses;
 import com.kmlz.optcredit.network.responses.CreditTypesResponse;
+import com.kmlz.optcredit.network.responses.ExpensensResponse;
 import com.kmlz.optcredit.network.responses.LoginResponse;
 import com.kmlz.optcredit.network.responses.MainResponse;
 import com.kmlz.optcredit.network.responses.OffersResponse;
@@ -40,6 +41,9 @@ public interface ApiInterface {
 
     @GET("listCategories")
     Call<CategoryListResponses> getCategories();
+
+    @POST("getExpenses/")
+    Call<ExpensensResponse> getExpenses(@Body MainRequestBody requestBody);
 
 
 //    @POST("dede")

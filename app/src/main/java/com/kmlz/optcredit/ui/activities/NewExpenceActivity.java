@@ -40,6 +40,7 @@ public class NewExpenceActivity extends AppCompatActivity {
     Spinner spin_type;
     Button add;
 
+    List<String> ids = new ArrayList<>();
     ApiInterface apiInterface;
 
     private AlertDialog progressDialog;
@@ -67,26 +68,16 @@ public class NewExpenceActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         if (response.body() != null) {
                             if (response.body().getCode().equals(Constants.KEY_FOUND)) {
-                                // TODO: 11/25/18 create spinner adapter
-                                SpinnerAdapter spinnerAdapter
-                                        = new SpinnerAdapter(NewExpenceActivity.this,
-                                        response.body().getResp(),
-                                        NewExpenceActivity.this
-                                );
-                                spin_type.setAdapter(spinnerAdapter);
+                                String [] types = new String[response.body().getResp().size()];
+                                for (int i = 0; i<types.length;i++){
+                                    types[i] = response.body().getResp().get(i).getCatName();
+                                    ids.add(response.body().getResp().get(i).getCatId());
+                                }
+                                ArrayAdapter spinnerArrayAdapter = new ArrayAdapter(NewExpenceActivity.this,
+                                        android.R.layout.simple_spinner_dropdown_item,
+                                        types);
+                                spin_type.setAdapter(spinnerArrayAdapter);
 
-                                spin_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                    @Override
-                                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                        CategoryResponse categoryResponse1 = response.body().getResp().get(i);
-                                        catId = Integer.parseInt(categoryResponse1.getCatId());
-                                    }
-
-                                    @Override
-                                    public void onNothingSelected(AdapterView<?> adapterView) {
-
-                                    }
-                                });
                             } else {
                                 new PromptDialog(NewExpenceActivity.this)
                                         .setDialogType(PromptDialog.DIALOG_TYPE_WRONG)
@@ -121,8 +112,12 @@ public class NewExpenceActivity extends AppCompatActivity {
 
     public void addExpence(View view) {
         if (!ed_amount.getText().toString().isEmpty()
-                || !ed_name.getText().toString().isEmpty()) {
-            sendDataToServer();
+                && !ed_name.getText().toString().isEmpty()) {
+            if (Helper.isNetworkAvailable(this)) {
+                sendDataToServer();
+            } else {
+                Toast.makeText(this, getString(R.string.nointernet), Toast.LENGTH_LONG).show();
+            }
 
         } else {
             Toast.makeText(this, getString(R.string.empty_fields), Toast.LENGTH_LONG).show();
@@ -131,16 +126,20 @@ public class NewExpenceActivity extends AppCompatActivity {
 
     private void sendDataToServer() {
         ExpenseRequest expenseRequest = new ExpenseRequest();
+        expenseRequest.setExpenseName(ed_name.getText().toString().trim());
         expenseRequest.setExpenseAmount(Double.parseDouble(ed_amount.getText().toString().trim()));
         expenseRequest.setToken(PreferenceIO.getInstance(this).readParam(Constants.KEY_PREF_TOKEN));
-        expenseRequest.setExpenseCategory(catId);
-
-
+        expenseRequest.setExpenseCategory(ids.get(spin_type.getSelectedItemPosition()));
         apiInterface.addExpense(expenseRequest)
                 .enqueue(new Callback<MainResponse>() {
                     @Override
                     public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
-
+                            if (response.body()!=null){
+                                if (response.body().getCode().equals("1024")){
+                                    Toast.makeText(NewExpenceActivity.this,"Əlavə olundu",Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
+                            }
                     }
 
                     @Override
