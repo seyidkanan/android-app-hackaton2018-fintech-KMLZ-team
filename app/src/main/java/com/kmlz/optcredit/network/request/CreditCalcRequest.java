@@ -1,6 +1,6 @@
 package com.kmlz.optcredit.network.request;
 
-public class CreditCalcRequest {
+public class CreditCalcRequest extends MainRequestBody {
     int cal_type;
     double cal_loan;
     double cal_percent;

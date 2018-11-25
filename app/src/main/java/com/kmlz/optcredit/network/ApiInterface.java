@@ -1,5 +1,6 @@
 package com.kmlz.optcredit.network;
 
+import com.kmlz.optcredit.network.request.CreditCalcRequest;
 import com.kmlz.optcredit.network.request.LoginRequest;
 import com.kmlz.optcredit.network.request.RegisterRequest;
 import com.kmlz.optcredit.network.responses.CreditTypesResponse;
@@ -19,8 +20,11 @@ public interface ApiInterface {
     @POST("askregister/")
     Call<MainResponse> register(@Body RegisterRequest registerRequest);
 
-    @GET("listTypes")
+    @GET("listTypes/")
     Call<CreditTypesResponse> getCreditTypes();
+
+    @POST("calculate/")
+    Call<MainResponse>  calculateCredit (@Body CreditCalcRequest creditCalcRequest);
 
 
 //    @POST("dede")

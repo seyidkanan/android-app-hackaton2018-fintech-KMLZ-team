@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import com.kmlz.optcredit.R;
 import com.kmlz.optcredit.network.ApiClient;
 import com.kmlz.optcredit.network.ApiInterface;
+import com.kmlz.optcredit.network.request.CreditCalcRequest;
 import com.kmlz.optcredit.network.responses.CreditTypesResponse;
 import com.kmlz.optcredit.ui.activities.LoginActivity;
 import com.kmlz.optcredit.utils.Helper;
@@ -86,8 +87,8 @@ public class CalculateCreditFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (!ed_amount.getText().toString().trim().isEmpty()
-                        || ed_lenght.getText().toString().trim().isEmpty()
-                        || ed_percent.getText().toString().trim().isEmpty()){
+                        && !ed_lenght.getText().toString().trim().isEmpty()
+                        && !ed_percent.getText().toString().trim().isEmpty()){
                     makeCalculations();
 
                 } else {
@@ -104,6 +105,10 @@ public class CalculateCreditFragment extends Fragment {
         int percents = Integer.parseInt(ed_percent.getText().toString().trim());
         Log.e("tag",amount+" "+months+" "+percents);
         double perMonthPay =  (amount + (amount * (percents/100))) / months;
+
+        CreditCalcRequest creditCalcRequest = new CreditCalcRequest();
+
+
 
         new PromptDialog(getActivity())
                 .setDialogType(PromptDialog.DIALOG_TYPE_WRONG)
