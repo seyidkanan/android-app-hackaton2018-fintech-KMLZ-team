@@ -3,7 +3,7 @@
     <string name="hint_mail">Email daxil edin</string>
     <string name="hint_pass">Şifrəni daxil edin</string>
     <string name="login">Daxil ol</string>
-    <string name="donthvacccnt">Hesabınız yoxdur? Dərhl qeydiyyatdan keçin</string>
+    <string name="donthvacccnt">Hesabınız yoxdur? Dərhal qeydiyyatdan keçin</string>
     <string name="hint_number">Nömrənizi daxil edin</string>
     <string name="hint_name">Ad Soyad</string>
     <string name="register">Qeydiyyat</string>
@@ -23,7 +23,11 @@
     <string name="nointernet">İnternetla əlaqə yoxdur</string>
     <string name="success_register">İstifadəçi müvəffəqiyətlə qeydiyatdan keçdi</string>
 
+    <string name="wrong_mail">Düzgün email daxil edin</string>
+
+
 
     <string name="meta_position">meta_position</string>
     <string name="meta_title">meta_title</string>
+
 </resources>

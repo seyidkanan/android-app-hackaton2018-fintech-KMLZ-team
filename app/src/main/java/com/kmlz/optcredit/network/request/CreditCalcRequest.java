@@ -1,16 +1,16 @@
 package com.kmlz.optcredit.network.request;
 
 public class CreditCalcRequest extends MainRequestBody {
-    int cal_type;
+    String cal_type;
     double cal_loan;
-    double cal_percent;
+    int cal_percent;
     int cal_period;
 
-    public int getCal_type() {
+    public String getCal_type() {
         return cal_type;
     }
 
-    public void setCal_type(int cal_type) {
+    public void setCal_type(String cal_type) {
         this.cal_type = cal_type;
     }
 
@@ -22,11 +22,11 @@ public class CreditCalcRequest extends MainRequestBody {
         this.cal_loan = cal_loan;
     }
 
-    public double getCal_percent() {
+    public int getCal_percent() {
         return cal_percent;
     }
 
-    public void setCal_percent(double cal_percent) {
+    public void setCal_percent(int cal_percent) {
         this.cal_percent = cal_percent;
     }
 

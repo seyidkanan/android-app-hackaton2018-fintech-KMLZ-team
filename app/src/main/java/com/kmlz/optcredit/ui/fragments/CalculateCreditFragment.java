@@ -13,15 +13,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.kmlz.optcredit.R;
 import com.kmlz.optcredit.network.ApiClient;
 import com.kmlz.optcredit.network.ApiInterface;
 import com.kmlz.optcredit.network.request.CreditCalcRequest;
 import com.kmlz.optcredit.network.responses.CreditTypesResponse;
+import com.kmlz.optcredit.network.responses.MainResponse;
 import com.kmlz.optcredit.ui.activities.LoginActivity;
+import com.kmlz.optcredit.utils.Constants;
 import com.kmlz.optcredit.utils.Helper;
+import com.kmlz.optcredit.utils.PreferenceIO;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,10 +95,16 @@ public class CalculateCreditFragment extends Fragment {
                 if (!ed_amount.getText().toString().trim().isEmpty()
                         && !ed_lenght.getText().toString().trim().isEmpty()
                         && !ed_percent.getText().toString().trim().isEmpty()){
-                    makeCalculations();
+
+                    if (Helper.isNetworkAvailable(getActivity())) {
+                        makeCalculations();
+                    } else {
+                        Toast.makeText(getActivity(),getString(R.string.nointernet),Toast.LENGTH_LONG).show();
+                    }
+
 
                 } else {
-
+                    Toast.makeText(getActivity(),getString(R.string.empty_fields),Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -104,23 +116,57 @@ public class CalculateCreditFragment extends Fragment {
         int months = Integer.parseInt(ed_lenght.getText().toString().trim());
         int percents = Integer.parseInt(ed_percent.getText().toString().trim());
         Log.e("tag",amount+" "+months+" "+percents);
-        double perMonthPay =  (amount + (amount * (percents/100))) / months;
-
+        double perMonthPay =  ((amount + (amount * (percents/100))) / months);
+       // final double onnan = round(perMonthPay,2);
         CreditCalcRequest creditCalcRequest = new CreditCalcRequest();
-
-
-
-        new PromptDialog(getActivity())
-                .setDialogType(PromptDialog.DIALOG_TYPE_WRONG)
-                .setAnimationEnable(true)
-                .setTitleText("Error")
-                .setContentText("Aylığ ödəniş "+ perMonthPay+" azn təşkil edəcək")
-                .setPositiveListener("ok", new PromptDialog.OnPositiveListener() {
-                    @Override
-                    public void onClick(PromptDialog dialog) {
-                        dialog.dismiss();
+        creditCalcRequest.setToken(PreferenceIO.getInstance(getActivity()).readParam(Constants.KEY_PREF_TOKEN));
+        creditCalcRequest.setCal_loan(amount);
+        creditCalcRequest.setCal_percent(percents);
+        creditCalcRequest.setCal_period(months);
+        creditCalcRequest.setCal_type(ids.get(spin_type.getSelectedItemPosition()));
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        final String calculatedAmount = formatter.format(perMonthPay);
+        ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        apiInterface.calculateCredit(creditCalcRequest).enqueue(new Callback<MainResponse>() {
+            @Override
+            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
+                if (response.body() != null){
+                    if (response.body().getCode().equals("1014")) {
+                        new PromptDialog(getActivity())
+                                .setDialogType(PromptDialog.DIALOG_TYPE_WRONG)
+                                .setAnimationEnable(true)
+                                .setTitleText("")
+                                .setContentText("Aylığ ödəniş "+ calculatedAmount+" azn təşkil edəcək")
+                                .setPositiveListener("ok", new PromptDialog.OnPositiveListener() {
+                                    @Override
+                                    public void onClick(PromptDialog dialog) {
+                                        dialog.dismiss();
+                                    }
+                                }).show();
+                    } else {
+                        new PromptDialog(getActivity())
+                                .setDialogType(PromptDialog.DIALOG_TYPE_WRONG)
+                                .setAnimationEnable(true)
+                                .setTitleText("Səhv")
+                                .setContentText("Serverda səhv baş verdi, zəhmət olmasa biraz sonra cəhd edin")
+                                .setPositiveListener("ok", new PromptDialog.OnPositiveListener() {
+                                    @Override
+                                    public void onClick(PromptDialog dialog) {
+                                        dialog.dismiss();
+                                    }
+                                }).show();
                     }
-                }).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MainResponse> call, Throwable t) {
+
+            }
+        });
+
+
+
     }
 
 
