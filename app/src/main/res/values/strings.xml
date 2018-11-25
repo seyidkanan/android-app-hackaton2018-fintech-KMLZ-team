@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">optcredit</string>
+    <string name="hint_mail">Email daxil edin</string>
+    <string name="hint_pass">Şifrəni daxil edin</string>
+    <string name="login">Daxil ol</string>
+    <string name="donthvacccnt">Hesabınız yoxdur? Dərhl qeydiyyatdan keçin</string>
+    <string name="hint_number">Nömrənizi daxil edin</string>
+    <string name="hint_name">Ad Soyad</string>
+    <string name="register">Qeydiyyat</string>
+    <string name="bankName">Bank adi</string>
+    <string name="creditType">Kredit tipi</string>
+    <string name="expencename">Xərcin adı</string>
+    <string name="expencetype">Xərcin tipi</string>
+    <string name="text_maount">49.00 Azn</string>
+    <string name="hint_expence_name">Xərcin adı</string>
+    <string name="add_expence">Əlavə et</string>
+    <string name="empty_fields">Boş sahələri doldurun</string>
+    <string name="writeamount">Məbləği yazın</string>
+    <string name="exp_credit_type">Kredit tipi seçin</string>
+    <string name="writePercent">Kredit fayizi</string>
+    <string name="writelength">Kredit müddəti (Ay)</string>
+    <string name="calculate">Hesabla</string>
+    <string name="nointernet">İnternetla əlaqə yoxdur</string>
+    <string name="success_register">İstifadəçi müvəffəqiyətlə qeydiyatdan keçdi</string>
+</resources>

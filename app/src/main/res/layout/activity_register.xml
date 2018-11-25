@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.RegisterActivity">
+
+    <RelativeLayout
+
+        android:id="@+id/relat_back"
+        android:alpha="0.7"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/relat_name"
+        android:background="@drawable/draw_relat_back"
+        android:layout_above="@+id/relat_mail"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/image_view_name"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            />
+        <EditText
+            android:id="@+id/edit_text_number"
+            android:background="@null"
+            android:hint="@string/hint_name"
+            android:inputType="text"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toLeftOf="@+id/image_view_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/colorHint"
+            android:textColor="@android:color/white"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relat_mail"
+        android:background="@drawable/draw_relat_back"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/image_view_mail"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            />
+        <EditText
+            android:id="@+id/edit_text_mail"
+            android:background="@null"
+            android:hint="@string/hint_mail"
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/colorHint"
+            android:textColor="@android:color/white"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toLeftOf="@+id/image_view_mail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relat_number"
+        android:background="@drawable/draw_relat_back"
+        android:layout_below="@+id/relat_mail"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/image_view_number"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            />
+        <EditText
+            android:id="@+id/edit_text_nubmer"
+            android:background="@null"
+            android:hint="@string/hint_number"
+            android:inputType="number"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toLeftOf="@+id/image_view_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/colorHint"
+            android:textColor="@android:color/white"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relat_pass"
+        android:background="@drawable/draw_relat_back"
+        android:layout_below="@+id/relat_number"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/image_view_pass"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            />
+        <EditText
+            android:id="@+id/edit_text_pass"
+            android:background="@null"
+            android:hint="@string/hint_pass"
+            android:inputType="textPassword"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_toLeftOf="@+id/image_view_pass"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/colorHint"
+            android:textColor="@android:color/white"
+            />
+
+
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/btn_register"
+        android:background="@drawable/draw_button_back"
+        android:layout_below="@+id/relat_pass"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:textColor="@android:color/white"
+        android:text="@string/register"
+        android:textAllCaps="false"
+        />
+
+</RelativeLayout>

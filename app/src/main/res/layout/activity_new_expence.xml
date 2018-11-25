@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.NewExpenceActivity">
+
+    <RelativeLayout
+        android:id="@+id/relat_name"
+        android:background="@drawable/draw_relat_input_back"
+        android:layout_below="@+id/relat_mail"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="72dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <EditText
+            android:id="@+id/edit_text_name"
+            android:background="@null"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/hint_expence_name"
+            android:inputType="text"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relat_type"
+        android:background="@drawable/draw_relat_input_back"
+        android:layout_below="@+id/relat_mail"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <Spinner
+
+            android:id="@+id/id_spinner_expence_type"
+            android:fontFamily="sans-serif-light"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </Spinner>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relat_amount"
+        android:background="@drawable/draw_relat_input_back"
+        android:layout_below="@+id/relat_mail"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <EditText
+            android:id="@+id/edit_text_amount"
+            android:background="@null"
+            android:fontFamily="sans-serif-light"
+            android:hint="0.00"
+            android:inputType="numberDecimal"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            />
+
+
+    </RelativeLayout>
+
+
+    <Button
+
+        android:id="@+id/id_button_add_exp"
+        android:background="@drawable/draw_button_back"
+        android:fontFamily="sans-serif-light"
+        android:onClick="addExpence"
+        android:text="@string/add_expence"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_marginRight="54dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+
+
+</LinearLayout>

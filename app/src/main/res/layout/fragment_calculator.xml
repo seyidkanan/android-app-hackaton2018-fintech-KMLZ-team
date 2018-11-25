@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:id="@+id/relat_amount"
+        android:background="@drawable/draw_relat_input_back"
+        android:layout_below="@+id/relat_mail"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <EditText
+            android:id="@+id/edit_text_amount"
+            android:background="@null"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/writeamount"
+            android:inputType="numberDecimal"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            />
+
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:textColor="@color/colorPrimary"
+        android:text="@string/exp_credit_type"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:id="@+id/relat_type"
+        android:background="@drawable/draw_relat_input_back"
+        android:layout_below="@+id/relat_mail"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <Spinner
+            android:id="@+id/id_spinner_credit_type"
+            android:fontFamily="sans-serif-light"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </Spinner>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relat_percent"
+        android:background="@drawable/draw_relat_input_back"
+        android:layout_below="@+id/relat_mail"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <EditText
+            android:id="@+id/edit_text_percent"
+            android:background="@null"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/writePercent"
+            android:inputType="numberDecimal"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relat_month"
+        android:background="@drawable/draw_relat_input_back"
+        android:layout_below="@+id/relat_mail"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <EditText
+            android:id="@+id/edit_text_month"
+            android:background="@null"
+            android:fontFamily="sans-serif-light"
+            android:hint="@string/writelength"
+            android:inputType="numberDecimal"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+    <Button
+
+        android:id="@+id/id_button_calculate"
+        android:background="@drawable/draw_button_back"
+        android:fontFamily="sans-serif-light"
+        android:onClick="addExpence"
+        android:text="@string/calculate"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_marginRight="54dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+</LinearLayout>
