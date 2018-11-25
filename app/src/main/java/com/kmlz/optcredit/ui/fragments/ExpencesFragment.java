@@ -38,8 +38,14 @@ public class ExpencesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_expences,container,false);
         initViews(view);
         configClickListeners();
-        getExpences();
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getExpences();
     }
 
     private void getExpences() {
