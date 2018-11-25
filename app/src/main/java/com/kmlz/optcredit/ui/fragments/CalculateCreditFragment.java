@@ -17,11 +17,13 @@ import com.kmlz.optcredit.R;
 import com.kmlz.optcredit.network.ApiClient;
 import com.kmlz.optcredit.network.ApiInterface;
 import com.kmlz.optcredit.network.responses.CreditTypesResponse;
+import com.kmlz.optcredit.ui.activities.LoginActivity;
 import com.kmlz.optcredit.utils.Helper;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.refactor.lib.colordialog.PromptDialog;
 import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -82,9 +84,37 @@ public class CalculateCreditFragment extends Fragment {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!ed_amount.getText().toString().trim().isEmpty()
+                        || ed_lenght.getText().toString().trim().isEmpty()
+                        || ed_percent.getText().toString().trim().isEmpty()){
 
+
+                } else {
+
+                }
             }
         });
+    }
+
+    private  void makeCalculations(){
+
+        double amount = Double.parseDouble(ed_amount.getText().toString().trim());
+        int months = Integer.parseInt(ed_lenght.getText().toString().trim());
+        int percents = Integer.parseInt(ed_percent.getText().toString().trim());
+
+        double perMonthPay =  (amount + (amount * (percents/100))) / months;
+
+        new PromptDialog(getActivity())
+                .setDialogType(PromptDialog.DIALOG_TYPE_WRONG)
+                .setAnimationEnable(true)
+                .setTitleText("Error")
+                .setContentText("Aylığ ödəniş "+ perMonthPay+" azn təşkil edəcək")
+                .setPositiveListener("ok", new PromptDialog.OnPositiveListener() {
+                    @Override
+                    public void onClick(PromptDialog dialog) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
 
