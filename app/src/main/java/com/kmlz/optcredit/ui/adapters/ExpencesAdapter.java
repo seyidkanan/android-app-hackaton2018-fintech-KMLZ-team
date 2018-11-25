@@ -14,18 +14,16 @@ import java.util.List;
 
 public class ExpencesAdapter extends RecyclerView.Adapter<ExpencesAdapter.ViewHolder> {
 
-
-
     Context context;
 
-    public ExpencesAdapter(){
+    public ExpencesAdapter() {
 
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.list_item_expence,viewGroup,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item_expence, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -39,7 +37,7 @@ public class ExpencesAdapter extends RecyclerView.Adapter<ExpencesAdapter.ViewHo
         return 0;
     }
 
-    class  ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView name, amount, id, type;
 

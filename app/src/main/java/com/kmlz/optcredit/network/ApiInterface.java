@@ -1,8 +1,10 @@
 package com.kmlz.optcredit.network;
 
 import com.kmlz.optcredit.network.request.CreditCalcRequest;
+import com.kmlz.optcredit.network.request.ExpenseRequest;
 import com.kmlz.optcredit.network.request.LoginRequest;
 import com.kmlz.optcredit.network.request.RegisterRequest;
+import com.kmlz.optcredit.network.responses.CategoryListResponses;
 import com.kmlz.optcredit.network.responses.CreditTypesResponse;
 import com.kmlz.optcredit.network.responses.LoginResponse;
 import com.kmlz.optcredit.network.responses.MainResponse;
@@ -24,8 +26,13 @@ public interface ApiInterface {
     Call<CreditTypesResponse> getCreditTypes();
 
     @POST("calculate/")
-    Call<MainResponse>  calculateCredit (@Body CreditCalcRequest creditCalcRequest);
+    Call<MainResponse> calculateCredit(@Body CreditCalcRequest creditCalcRequest);
 
+    @POST("addExpense")
+    Call<MainResponse> addExpense(@Body ExpenseRequest expenseRequest);
+
+    @GET("listCategories")
+    Call<CategoryListResponses> getCategories();
 
 //    @POST("dede")
 //    Call<> getCreditTypes(@POST MainRequestBody requestBody);

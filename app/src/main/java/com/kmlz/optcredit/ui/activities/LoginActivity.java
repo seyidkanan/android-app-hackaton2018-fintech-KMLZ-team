@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!e_login.getText().toString().trim().isEmpty() && e_pass.getText().toString().trim().isEmpty()) {
+                if (!e_login.getText().toString().trim().isEmpty() && !e_pass.getText().toString().trim().isEmpty()) {
                     if (Helper.isNetworkAvailable(LoginActivity.this)) {
                         logintioAccount();
                     } else {
