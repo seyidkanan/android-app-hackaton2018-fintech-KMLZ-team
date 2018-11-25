@@ -3,21 +3,25 @@ package com.kmlz.optcredit.ui.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kmlz.optcredit.R;
+import com.kmlz.optcredit.network.responses.ExpenseRes;
 
 import java.util.List;
 
 public class ExpencesAdapter extends RecyclerView.Adapter<ExpencesAdapter.ViewHolder> {
 
     Context context;
+    List<ExpenseRes> expenseRes;
 
-    public ExpencesAdapter() {
-
+    public ExpencesAdapter(Context context, List<ExpenseRes> expenseRes) {
+        this.expenseRes = expenseRes;
+        this.context = context;
     }
 
     @NonNull
@@ -29,12 +33,15 @@ public class ExpencesAdapter extends RecyclerView.Adapter<ExpencesAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+        viewHolder.type.setText(expenseRes.get(i).getCAT_NAME());
+        viewHolder.name.setText(expenseRes.get(i).getEXPENSE_NAME());
+        viewHolder.amount.setText(expenseRes.get(i).getEXPENSE_AMOUNT());
+        Log.e("here in lis","in list");
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return expenseRes.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

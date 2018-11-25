@@ -8,7 +8,7 @@ public class ExpenseRequest {
     @SerializedName("expense_amount")
     private double expenseAmount;
     @SerializedName("expense_category")
-    private int expenseCategory;
+    private String expenseCategory;
     @SerializedName("expense_name")
     private String expenseName;
 
@@ -29,11 +29,11 @@ public class ExpenseRequest {
         this.expenseAmount = expenseAmount;
     }
 
-    public int getExpenseCategory() {
+    public String getExpenseCategory() {
         return expenseCategory;
     }
 
-    public void setExpenseCategory(int expenseCategory) {
+    public void setExpenseCategory(String expenseCategory) {
         this.expenseCategory = expenseCategory;
     }
 
