@@ -3,16 +3,21 @@ package com.kmlz.optcredit.ui.activities;
 import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
 import com.kmlz.optcredit.R;
 import com.kmlz.optcredit.network.ApiClient;
 import com.kmlz.optcredit.network.ApiInterface;
 import com.kmlz.optcredit.network.request.RegisterRequest;
 import com.kmlz.optcredit.network.responses.MainResponse;
+
+import java.util.regex.Pattern;
 
 import cn.refactor.lib.colordialog.PromptDialog;
 import dmax.dialog.SpotsDialog;
@@ -40,13 +45,20 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if ( !ed_email.getText().toString().trim().isEmpty()
-                        || !ed_name.getText().toString().trim().isEmpty()
-                        || !ed_number.getText().toString().trim().isEmpty()
-                        || !ed_pass.getText().toString().trim().isEmpty()
+                        && !ed_name.getText().toString().trim().isEmpty()
+                        && !ed_number.getText().toString().trim().isEmpty()
+                        && !ed_pass.getText().toString().trim().isEmpty()
 
                         ){
 
-                    registerUser();
+                    Pattern pattern = Patterns.EMAIL_ADDRESS;
+                    if (pattern.matcher(ed_email.getText().toString()).matches()){
+                        registerUser();
+                    } else {
+                        Toast.makeText(RegisterActivity.this, getString(R.string.wrong_mail), Toast.LENGTH_LONG).show();
+                    }
+
+
 
                 } else {
                     Toast.makeText(RegisterActivity.this, getString(R.string.empty_fields), Toast.LENGTH_LONG).show();
@@ -63,12 +75,13 @@ public class RegisterActivity extends AppCompatActivity {
         registerRequest.setNumber(ed_number.getText().toString().trim());
         registerRequest.setPass(ed_pass.getText().toString().trim());
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
-        apiInterface.register(registerRequest).enqueue(new Callback<MainResponse>() {
+        apiInterface.register(registerRequest).enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<MainResponse> call, Response<MainResponse> response) {
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 progressDialog.dismiss();
                 if (response.body() != null) {
-                    if (response.body().getCode().equals("1010")) {
+
+                    if (response.body().get("code").getAsString().equals("1010")) {
                         Toast.makeText(RegisterActivity.this, getString(R.string.success_register),Toast.LENGTH_LONG).show();
                         finish();
                     } else {
@@ -88,8 +101,10 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<MainResponse> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.e("tag","i am in failure");
                 progressDialog.dismiss();
+                t.printStackTrace();
             }
         });
     }

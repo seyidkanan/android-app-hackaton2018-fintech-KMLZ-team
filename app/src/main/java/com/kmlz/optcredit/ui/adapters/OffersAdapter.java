@@ -11,18 +11,18 @@ import android.widget.TextView;
 
 import com.kmlz.optcredit.R;
 import com.kmlz.optcredit.models.Offer;
+import com.kmlz.optcredit.network.responses.OfferObj;
 
 import java.util.List;
 
 public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.ViewHolder> {
 
-    private List<Offer> offers;
+    private List<OfferObj> offers;
     Context context;
 
-    public OffersAdapter(List<Offer> offers, Context context){
+    public OffersAdapter(List<OfferObj> offers, Context context){
         this.context = context;
         this.offers = offers;
-
     }
 
     @NonNull
@@ -34,8 +34,8 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        holder.offerName.setText(offers.get(i).getOfferName());
-        holder.bankName.setText(offers.get(i).getBankName());
+        holder.offerName.setText(offers.get(i).getOFFER_TITLE());
+        holder.bankName.setText(offers.get(i).getOFFER_CONTENT());
         // we'll use bankIcon in future
     }
 
